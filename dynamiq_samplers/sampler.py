@@ -1,4 +1,4 @@
-import pywigner as lsc
+import dynamiq_samplers as samplers
 
 class InitialConditionSampler(object):
     __features__ = []
