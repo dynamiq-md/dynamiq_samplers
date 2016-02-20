@@ -1,0 +1,28 @@
+package:
+    name: dynamiq_samplers-dev
+    version: "0.0.1"
+
+source:
+    path: ../../
+
+requirements:
+    build:
+        - python
+        - setuptools
+        - numpy
+
+    run:
+        - python
+        - numpy
+        - scipy
+        - pandas
+        - openpathsampling-dev
+
+
+test:
+    requires:
+        - nose
+        - python-coveralls
+
+    imports:
+        - dynamiq_samplers
