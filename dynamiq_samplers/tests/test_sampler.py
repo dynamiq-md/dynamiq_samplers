@@ -4,6 +4,53 @@ from dynamiq_samplers.tests.tools import *
 # TODO: change this up a little so it isn't import *
 from dynamiq_samplers import *
 
+
+class testInitialConditionSampler(object):
+    def setup(self):
+        # TODO: set up 2 engines
+        self.eng1 = 0
+        self.eng2 = 1
+        self.sampler = InitialConditionSampler()
+
+    @raises(RuntimeError)
+    def test_no_initial_engine(self):
+        self.sampler.engine
+
+    def test_local_engine_overrides_global(self):
+        # set the global engine: this should set the engine
+        InitialConditionSampler.global_engine = self.eng1
+        assert_equal(self.sampler.engine, self.eng1)
+        # set the local engine: this should override the previous
+        self.sampler.engine = self.eng2
+        assert_equal(self.sampler.engine, self.eng2)
+
+    def test_global_engine_no_override(self):
+        # set the local engine: this should set the engine
+        self.sampler.engine = self.eng2
+        assert_equal(self.sampler.engine, self.eng2)
+        # set the global engine: this should not change anything
+        InitialConditionSampler.global_engine = self.eng1
+        assert_equal(self.sampler.engine, self.eng2)
+
+    def test_global_engine_is_global(self):
+        InitialConditionSampler.global_engine = self.eng1
+        new_sampler = InitialConditionSampler()
+        assert_equal(new_sampler.engine, self.eng1)
+        other_class_sampler = OrthogonalInitialConditions([])
+        assert_equal(other_class_sampler.engine, self.eng1)
+
+    def test_prepare(self):
+        InitialConditionSampler.global_engine = self.eng1
+        # prepare without engine
+        self.sampler.prepare(n_frames=10)
+        assert_equal(self.sampler.n_frames, 10)
+        assert_equal(self.sampler.engine, self.eng1)
+        # prepare with other engine
+        self.sampler.prepare(n_frames=20, engine=self.eng2)
+        assert_equal(self.sampler.n_frames, 20)
+        assert_equal(self.sampler.engine, self.eng2)
+
+
 class testOrthogonalInitialConditions(object):
     def setup(self):
         from dynamiq_engine.tests.stubs import PotentialStub
