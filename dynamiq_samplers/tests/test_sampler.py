@@ -1,8 +1,8 @@
-import pywigner as lsc
 import dynamiq_engine as dynq
 import numpy as np
-from pywigner.tests.tools import *
-from pywigner.samplers import *
+from dynamiq_samplers.tests.tools import *
+# TODO: change this up a little so it isn't import *
+from dynamiq_samplers import *
 
 class testOrthogonalInitialConditions(object):
     def setup(self):

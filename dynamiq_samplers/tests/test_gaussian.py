@@ -1,7 +1,6 @@
-import pywigner as lsc
 import numpy as np
-from pywigner.tools import GaussianFunction
-from pywigner.tests.tools import *
+from dynamiq_samplers.tools import GaussianFunction
+from dynamiq_engine.tests.tools import *
 
 class testGaussianFunction(object):
     def setup(self):

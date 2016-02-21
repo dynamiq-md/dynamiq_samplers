@@ -1,8 +1,9 @@
-import pywigner as lsc
 import dynamiq_engine as dynq
 import numpy as np
-from pywigner.tests.tools import *
-from pywigner.samplers import *
+from dynamiq_samplers.tests.tools import *
+import dynamiq_samplers as samplers
+# TODO: change import *
+from dynamiq_samplers import *
 
 class testGaussianInitialConditions(object):
     def setup(self):

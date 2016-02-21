@@ -5,3 +5,4 @@ from sampler import (
 from gaussian_sampler import (GaussianInitialConditions,
                               MMSTElectronicGaussianInitialConditions)
 
+import tools

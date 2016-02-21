@@ -10,10 +10,10 @@ install:
 
 script:
     - conda install --yes conda-build
+    # other packaged are built in the build.sh
     - conda build devtools/conda-recipe
     
     - source activate _test
-    # end of dynamiq_engine install
     - nosetests -v --with-coverage
 
 after_success:
