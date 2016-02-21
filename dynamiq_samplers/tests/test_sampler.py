@@ -7,9 +7,24 @@ from dynamiq_samplers import *
 
 class testInitialConditionSampler(object):
     def setup(self):
-        # TODO: set up 2 engines
-        self.eng1 = 0
-        self.eng2 = 1
+        # TOD: clean this up!
+        pes = dynq.potentials.OneDimensionalInteractionModel(
+            dynq.potentials.interactions.ConstantInteraction(1.0)
+        )
+        topology = dynq.Topology(np.array([1.0]), pes)
+        template = dynq.Snapshot(coordinates=np.array([0.0]),
+                                 momenta=np.array([0.0]),
+                                 topology=topology)
+        self.eng1 = dynq.DynamiqEngine(
+            potential=pes, 
+            integrator=dynq.integrators.CandyRozmus4(0.1, pes),
+            template=template
+        )
+        self.eng2 = dynq.DynamiqEngine(
+            potential=pes, 
+            integrator=dynq.integrators.CandyRozmus4(1.0, pes),
+            template=template
+        )
         # in case other tests have been run before
         if InitialConditionSampler.global_engine is not None:
             InitialConditionSampler.global_engine = None
