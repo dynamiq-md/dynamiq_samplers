@@ -28,7 +28,7 @@ class InitialConditionSampler(object):
         self._engine = value
 
     def generate_trial_trajectory(self, previous_trajectory):
-        snap0 = self.generate_initial_snapshot(previous_trajectory[0])
+        #snap0 = self.generate_initial_snapshot(previous_trajectory[0])
         # TODO
         pass
 
@@ -37,10 +37,10 @@ class InitialConditionSampler(object):
 
     def __call__(self, snapshot):
         raise NotImplementedError("Abstract InitialConditionSampler")
-        pass
 
 class OrthogonalInitialConditions(InitialConditionSampler):
     def __init__(self, samplers):
+        super(OrthogonalInitialConditions, self).__init__()
         self.samplers = samplers
         self.__features__ = list(set(sum(
             [s.__features__ for s in self.samplers], []
