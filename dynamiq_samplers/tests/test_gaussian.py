@@ -5,6 +5,8 @@ from dynamiq_engine.tests.tools import *
 class testGaussianFunction(object):
     def setup(self):
         self.gaussian = GaussianFunction(x0=[0.0, 1.0], alpha=[1.0, 2.0])
+        self.unnormed = GaussianFunction(x0=[0.0, 1.0], alpha=[1.0, 2.0],
+                                         normed=False)
 
     @raises(AssertionError)
     def test_bad_setup(self):
@@ -24,6 +26,14 @@ class testGaussianFunction(object):
         }
         check_function(self.gaussian, tests)
 
+    def test_unnormed(self):
+        tests = {
+            0.0 : np.exp(-2.0*(-1.0)**2),
+            0.5 : np.exp(-(0.5)**2 - 2.0*(0.5-1.0)**2),
+            1.0 : np.exp(-(1.0)**2),
+            1.5 : np.exp(-(1.5)**2 - 2.0*(1.5-1.0)**2)
+        }
+        check_function(self.unnormed, tests)
 
     def test_draw_samples(self):
         sample = self.gaussian.draw_sample()
