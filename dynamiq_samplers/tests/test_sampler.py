@@ -10,11 +10,14 @@ class testInitialConditionSampler(object):
         # TODO: set up 2 engines
         self.eng1 = 0
         self.eng2 = 1
+        # in case other tests have been run before
+        if InitialConditionSampler.global_engine is not None:
+            InitialConditionSampler.global_engine = None
         self.sampler = InitialConditionSampler()
 
     @raises(RuntimeError)
     def test_no_initial_engine(self):
-        self.sampler.engine
+        eng = self.sampler.engine
 
     def test_local_engine_overrides_global(self):
         # set the global engine: this should set the engine
