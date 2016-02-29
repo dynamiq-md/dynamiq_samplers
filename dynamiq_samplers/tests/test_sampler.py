@@ -8,9 +8,7 @@ from dynamiq_samplers import *
 class testInitialConditionSampler(object):
     def setup(self):
         # TOD: clean this up!
-        pes = dynq.potentials.OneDimensionalInteractionModel(
-            dynq.potentials.interactions.ConstantInteraction(1.0)
-        )
+        pes = dynq.potentials.interactions.ConstantInteraction(1.0)
         topology = dynq.Topology(np.array([1.0]), pes)
         template = dynq.Snapshot(coordinates=np.array([0.0]),
                                  momenta=np.array([0.0]),
