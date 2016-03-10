@@ -127,7 +127,7 @@ class testOrthogonalInitialConditions(object):
 
 
     def test_features(self):
-        from openpathsampling.features import coordinates as f_coordinates
+        from openpathsampling.engines.features import coordinates as f_coordinates
         from dynamiq_engine.features import momenta as f_momenta
         from dynamiq_engine.features import electronic_coordinates \
                 as f_e_coordinates

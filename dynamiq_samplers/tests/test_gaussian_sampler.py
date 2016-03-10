@@ -39,7 +39,7 @@ class testGaussianInitialConditions(object):
                                        topology=topol_2)
 
     def test_features(self):
-        from openpathsampling.features import coordinates as f_coordinates
+        from openpathsampling.engines.features import coordinates as f_coordinates
         from dynamiq_engine.features import momenta as f_momenta
         sampler = GaussianInitialConditions(x0=[0.0], alpha_x=[1.0],
                                             p0=[1.0], alpha_p=[2.0])
@@ -176,7 +176,7 @@ class testMMSTElectronicGaussianInitialConditions(object):
                              self.snap0x0.electronic_momenta[d])
 
     def test_features(self):
-        from openpathsampling.features import coordinates as f_coordinates
+        from openpathsampling.engines.features import coordinates as f_coordinates
         from dynamiq_engine.features import momenta as f_momenta
         from dynamiq_engine.features import electronic_coordinates \
                 as f_e_coordinates

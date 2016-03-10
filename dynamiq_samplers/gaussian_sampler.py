@@ -4,12 +4,12 @@ import numpy as np
 from dynamiq_samplers.sampler import InitialConditionSampler
 
 # both of these are for the features
-import openpathsampling as paths
+import openpathsampling.engines as peng
 import dynamiq_engine.features as features
 
 
 class GaussianInitialConditions(InitialConditionSampler):
-    __features__ = [paths.features.coordinates, features.momenta]
+    __features__ = [peng.features.coordinates, features.momenta]
     def __init__(self, x0, p0, alpha_x, alpha_p, coordinate_dofs=None,
                  momentum_dofs=None):
         self.x0 = x0
