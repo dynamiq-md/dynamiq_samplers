@@ -1,5 +1,6 @@
 import dynamiq_samplers as samplers
 import numpy as np
+import copy
 # dodge circular import issues
 from dynamiq_samplers.sampler import InitialConditionSampler
 
@@ -50,10 +51,10 @@ class GaussianInitialConditions(InitialConditionSampler):
 
 
     def generate_initial_snapshot(self, previous_snapshot):
-        snapshot = previous_snapshot.copy() 
+        snapshot = copy.deepcopy(previous_snapshot)
         # this might be a shallow copy, so deepen over the features:
-        snapshot.momenta = snapshot.momenta.copy()
-        snapshot.coordinates = snapshot.coordinates.copy()
+        # snapshot.momenta = snapshot.momenta.copy()
+        # snapshot.coordinates = snapshot.coordinates.copy()
         self.fill_initial_snapshot(snapshot, previous_snapshot)
         return snapshot
 
@@ -90,10 +91,10 @@ class MMSTElectronicGaussianInitialConditions(GaussianInitialConditions):
         )
 
     def generate_initial_snapshot(self, previous_snapshot):
-        snapshot = previous_snapshot.copy() 
+        snapshot = copy.deepcopy(previous_snapshot)
         # this might be a shallow copy, so deepen over the features:
-        snapshot.electronic_momenta = snapshot.electronic_momenta.copy()
-        snapshot.electronic_coordinates = snapshot.electronic_coordinates.copy()
+        # snapshot.electronic_momenta = snapshot.electronic_momenta.copy()
+        # snapshot.electronic_coordinates = snapshot.electronic_coordinates.copy()
         self.fill_initial_snapshot(snapshot, previous_snapshot)
         return snapshot
 

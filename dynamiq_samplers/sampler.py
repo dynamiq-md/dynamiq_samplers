@@ -1,4 +1,5 @@
 import dynamiq_samplers as samplers
+import copy
 
 class InitialConditionSampler(object):
     __features__ = []
@@ -70,8 +71,7 @@ class OrthogonalInitialConditions(InitialConditionSampler):
 
 
     def generate_initial_snapshot(self, previous_snapshot):
-        snapshot = previous_snapshot.copy()
-        # TODO: add correct copying of all features in here
+        snapshot = copy.deepcopy(previous_snapshot)
         self.fill_initial_snapshot(snapshot, previous_snapshot)
         return snapshot
 
