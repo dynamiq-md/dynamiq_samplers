@@ -71,7 +71,7 @@ class OrthogonalInitialConditions(InitialConditionSampler):
 
 
     def generate_initial_snapshot(self, previous_snapshot):
-        snapshot = copy.deepcopy(previous_snapshot)
+        snapshot = previous_snapshot.copy()
         self.fill_initial_snapshot(snapshot, previous_snapshot)
         return snapshot
 

@@ -51,7 +51,7 @@ class GaussianInitialConditions(InitialConditionSampler):
 
 
     def generate_initial_snapshot(self, previous_snapshot):
-        snapshot = copy.deepcopy(previous_snapshot)
+        snapshot = previous_snapshot.copy()
         # this might be a shallow copy, so deepen over the features:
         # snapshot.momenta = snapshot.momenta.copy()
         # snapshot.coordinates = snapshot.coordinates.copy()
@@ -91,7 +91,7 @@ class MMSTElectronicGaussianInitialConditions(GaussianInitialConditions):
         )
 
     def generate_initial_snapshot(self, previous_snapshot):
-        snapshot = copy.deepcopy(previous_snapshot)
+        snapshot = previous_snapshot.copy()
         # this might be a shallow copy, so deepen over the features:
         # snapshot.electronic_momenta = snapshot.electronic_momenta.copy()
         # snapshot.electronic_coordinates = snapshot.electronic_coordinates.copy()
