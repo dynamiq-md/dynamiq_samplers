@@ -1,15 +1,16 @@
 import dynamiq_samplers as samplers
 import numpy as np
+import copy
 # dodge circular import issues
 from dynamiq_samplers.sampler import InitialConditionSampler
 
 # both of these are for the features
-import openpathsampling as paths
+import openpathsampling.engines as peng
 import dynamiq_engine.features as features
 
 
 class GaussianInitialConditions(InitialConditionSampler):
-    __features__ = [paths.features.coordinates, features.momenta]
+    __features__ = [peng.features.coordinates, features.momenta]
     def __init__(self, x0, p0, alpha_x, alpha_p, coordinate_dofs=None,
                  momentum_dofs=None):
         self.x0 = x0
@@ -50,10 +51,10 @@ class GaussianInitialConditions(InitialConditionSampler):
 
 
     def generate_initial_snapshot(self, previous_snapshot):
-        snapshot = previous_snapshot.copy() 
+        snapshot = previous_snapshot.copy()
         # this might be a shallow copy, so deepen over the features:
-        snapshot.momenta = snapshot.momenta.copy()
-        snapshot.coordinates = snapshot.coordinates.copy()
+        # snapshot.momenta = snapshot.momenta.copy()
+        # snapshot.coordinates = snapshot.coordinates.copy()
         self.fill_initial_snapshot(snapshot, previous_snapshot)
         return snapshot
 
@@ -90,10 +91,10 @@ class MMSTElectronicGaussianInitialConditions(GaussianInitialConditions):
         )
 
     def generate_initial_snapshot(self, previous_snapshot):
-        snapshot = previous_snapshot.copy() 
+        snapshot = previous_snapshot.copy()
         # this might be a shallow copy, so deepen over the features:
-        snapshot.electronic_momenta = snapshot.electronic_momenta.copy()
-        snapshot.electronic_coordinates = snapshot.electronic_coordinates.copy()
+        # snapshot.electronic_momenta = snapshot.electronic_momenta.copy()
+        # snapshot.electronic_coordinates = snapshot.electronic_coordinates.copy()
         self.fill_initial_snapshot(snapshot, previous_snapshot)
         return snapshot
 
