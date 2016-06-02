@@ -10,6 +10,7 @@ install:
 
 script:
     - conda install --yes conda-build
+    - conda config --set always_yes true
     # when OPS conda doesn't work, use the next 2 lines
     - source devtools/no-ops-conda/make_build.sh
     - source devtools/no-ops-conda/build.sh
