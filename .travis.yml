@@ -16,9 +16,8 @@ script:
     - source devtools/no-ops-conda/build.sh
     # when OPS conda works, use the line below
     #- conda build devtools/conda-recipe
+    #- source activate _test
     # other packages are built in the build.sh
-    
-    - source activate _test
     - nosetests -v --with-coverage
 
 after_success:
