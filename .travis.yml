@@ -17,6 +17,7 @@ script:
     # when OPS conda works, use the line below
     - conda install --yes --name test --use-local dynamiq_samplers-dev
     - source activate test
+    - conda install --yes openpathsampling
     - conda install --yes nose python-coveralls
 
     # other packages are built in the build.sh
