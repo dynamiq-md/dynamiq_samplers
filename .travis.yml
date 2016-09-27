@@ -9,8 +9,8 @@ install:
     - export PYTHONUNBUFFERED=true
 
 script:
+    - conda install --yes conda-build
     # when OPS conda doesn't work, use the next lines
-    #- conda install --yes conda-build
     #- conda config --set always_yes true
     #- source devtools/no-ops-conda/make_build.sh
     #- source devtools/no-ops-conda/build.sh
